@@ -1,24 +1,38 @@
-# This Python file uses the following encoding: utf-8
 import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QTimeEdit
+from PyQt5.QtCore import QTime
+import subprocess
 
-from PySide6.QtWidgets import QApplication, QWidget
-from ui_form import Ui_Widget
+class ShutdownApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
 
+    def initUI(self):
+        self.setWindowTitle('Shutdown Timer')
 
-# Important:
-# You need to run the following command to generate the ui_form.py file
-#     pyside6-uic form.ui -o ui_form.py, or
-#     pyside2-uic form.ui -o ui_form.py
+        self.timeEdit = QTimeEdit()
+        self.timeEdit.setDisplayFormat('HH:mm')
+        self.timeEdit.setTime(QTime.currentTime())
 
-class Widget(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.ui = Ui_Widget()
-        self.ui.setupUi(self)
+        self.shutdownButton = QPushButton('Shutdown')
+        self.shutdownButton.clicked.connect(self.shutdown)
 
+        layout = QVBoxLayout()
+        layout.addWidget(self.timeEdit)
+        layout.addWidget(self.shutdownButton)
 
-if __name__ == "__main__":
+        self.setLayout(layout)
+
+    def shutdown(self):
+        shutdown_time = self.timeEdit.time().toString('HH:mm')
+        hours, minutes = map(int, shutdown_time.split(':'))
+        shutdown_seconds = hours * 3600 + minutes * 60
+
+        subprocess.run(['shutdown', '/s', '/t', str(shutdown_seconds)])
+
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-    widget = Widget()
-    widget.show()
-    sys.exit(app.exec())
+    window = ShutdownApp()
+    window.show()
+    sys.exit(app.exec_())

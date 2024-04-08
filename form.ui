@@ -55,7 +55,7 @@
      <x>30</x>
      <y>20</y>
      <width>271</width>
-     <height>101</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="title">
@@ -68,7 +68,7 @@
      <x>320</x>
      <y>20</y>
      <width>241</width>
-     <height>101</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="title">
@@ -84,12 +84,38 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>221</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
   </widget>
+  <zorder>groupBox</zorder>
   <zorder>groupBox_2</zorder>
   <zorder>timeEdit</zorder>
   <zorder>pushButton</zorder>
   <zorder>label</zorder>
-  <zorder>groupBox</zorder>
  </widget>
  <resources/>
  <connections/>
